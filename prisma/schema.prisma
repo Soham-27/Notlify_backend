@@ -15,10 +15,10 @@ datasource db {
 
 model User {
   id      Int  @id @default(autoincrement())
-  fname   String
-  lname   String
   email   String @unique
   username String @unique
+  fname   String
+  lname   String
   password String
   bio     String
   profile_image String
