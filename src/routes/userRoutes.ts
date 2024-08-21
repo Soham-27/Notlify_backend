@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { signup } from "../controllers/userControllers";
+import { login, signup } from "../controllers/userControllers";
 export const userRouter = new Hono<{
     Bindings: {
         DATABASE_URL: string;
@@ -7,3 +7,4 @@ export const userRouter = new Hono<{
     }
 }>();
 userRouter.post("/signup",signup);
+userRouter.post("/login",login);

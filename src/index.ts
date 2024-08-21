@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { userRouter } from './routes/userRoutes';
-
+import bcrypt from "bcrypt";
 
 const app = new Hono<{
   Bindings: {
