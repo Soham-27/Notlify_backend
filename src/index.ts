@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { userRouter } from './routes/userRoutes';
 import bcrypt from "bcrypt";
+import { noteRouter } from './routes/NotesRoutes';
 
 const app = new Hono<{
   Bindings: {
@@ -9,6 +10,7 @@ const app = new Hono<{
   }
 }>();
 app.route("/user",userRouter);
+app.route("/note",noteRouter)
 
 app.get('/', (c) => {
   return c.text('Hello Hono!')
