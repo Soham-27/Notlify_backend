@@ -1,6 +1,5 @@
 import { Hono } from 'hono'
 import { userRouter } from './routes/userRoutes';
-import bcrypt from "bcrypt";
 import { noteRouter } from './routes/NotesRoutes';
 
 const app = new Hono<{
