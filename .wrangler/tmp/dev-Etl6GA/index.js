@@ -8929,6 +8929,7 @@ var isAuth = async (c, next) => {
 var userRouter = new Hono2();
 userRouter.post("/signup", signup);
 userRouter.post("/login", login);
+userRouter.use("/*", isAuth);
 userRouter.get("/", isAuth, getUser);
 
 // src/routes/NotesRoutes.ts
