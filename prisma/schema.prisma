@@ -16,13 +16,12 @@ datasource db {
 model User {
   id      Int  @id @default(autoincrement())
   email   String @unique
-  username String @unique
   fname   String
   lname   String
   password String
-  bio     String
-  profile_image String
+ 
   Notes   Notes[]
+  Starred Starred[]
 }
 
 
@@ -35,4 +34,17 @@ model Notes{
   updated_at DateTime
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int
+  iStared Boolean @default(false)
+  Starred    Starred[]
 }
+
+
+  model Starred {
+  id        Int     @id @default(autoincrement())
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId    Int
+  note      Notes   @relation(fields: [noteId], references: [id])
+  noteId    Int
+  createdAt DateTime @default(now())
+}
+
