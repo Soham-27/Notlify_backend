@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { userRouter } from "./routes/userRoutes";
 import { noteRouter } from "./routes/NotesRoutes";
-
+import { cors } from "hono/cors";
 const app = new Hono<{
   Bindings: {
     DATABASE_URL: string;
@@ -10,22 +10,8 @@ const app = new Hono<{
 }>();
 
 // CORS middleware
-app.use("*", async (c, next) => {
-  c.res.headers.append("Access-Control-Allow-Origin", "*");
-  c.res.headers.append(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
-  c.res.headers.append(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization"
-  );
-  if (c.req.method === "OPTIONS") {
-    return c.text("Preflight request allowed", 200);
-  }
-  await next();
-});
 
+app.use("/*", cors());
 // Add routes
 app.route("/user", userRouter);
 app.route("/note", noteRouter);
